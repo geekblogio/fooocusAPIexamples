@@ -5,12 +5,17 @@ MIN_PNG = ('data:image/png;base64,'
            'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=')
 
 
-def set_parameters(client, positive_prompt='', negative_prompt='', seed=0):
+def get_all_styles(client):
+    result = client.predict(fn_index=18)
+    return sorted(style[0] for style in result['choices'])
+
+
+def set_parameters(client, positive_prompt='', negative_prompt='', seed=0, style=None):
     result = client.predict(
         False,              # bool | toggle if an image grid gor that batch should be created
         positive_prompt,    # str | Positive Prompt
         negative_prompt,    # str | Negative Prompt
-        [],                 # List[str] | Selected Styles
+        style or [],                 # List[str] | Selected Styles
         'Speed',            # str | Performance: Speed, Quality, Extreme Speed, Lightning
         '1024×1024',        # str | Aspect Ratio
         1,                  # int | Number of Images to create (value between 1 and 32)
@@ -99,7 +104,7 @@ def set_parameters(client, positive_prompt='', negative_prompt='', seed=0):
         0.0,                # float | Stop At (value between 0.0 and 1.0)
         0.0,                # float | Weight (value between 0.0 and 2.0)
         'ImagePrompt',      # str | Type
-        fn_index=40
+        fn_index=41
     )
 
     if result == ():
@@ -108,5 +113,5 @@ def set_parameters(client, positive_prompt='', negative_prompt='', seed=0):
 
 
 def generate(client):
-    result = client.predict(fn_index=41)
+    result = client.predict(fn_index=42)
     return result
