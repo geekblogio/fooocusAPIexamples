@@ -1,3 +1,3 @@
 # Fooocus API examples
 
-Fooocus version: 2.3.1
+Fooocus version: 2.4.3

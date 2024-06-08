@@ -6,7 +6,7 @@ MIN_PNG = ('data:image/png;base64,'
 
 
 def generate(client):
-    result = client.predict(fn_index=42)
+    result = client.predict(fn_index=47)
     return result
 
 
@@ -58,12 +58,15 @@ def set_parameters(client, positive_prompt='', negative_prompt='', seed=0, style
         True,               # bool | Disable Preview
         True,               # bool | Disable Intermediate Results
         False,              # bool in 'Disable seed increment' Checkbox component
+        False,              # bool in 'Black Out NSFW' Checkbox component
         1.5,                # int / float | Positive ADM Guidance (value between 0.1 and 3.0)
         0.8,                # int / float | Negative ADM Guidance (value between 0.1 and 3.0)
         0.3,                # int / float | ADM Guidance End At Step (value between 0.0 and 1.0)
         7,                  # int / float | CFG Mimicking from TSNR (value between 1.0 and 30.0)
+        1,                  # int | CLIP Skip Slider (numeric value between 1 and 12)
         'dpmpp_2m_sde_gpu',     # str | Sampler
         'karras',           # str | Scheduler
+        'Default (model)',  # str | (Option from: ['Default (model)']) in 'VAE' Dropdown component
         -1,                 # int | Forced Overwrite of Sampling Step (value between -1 and 200)
         -1,                 # int | Forced Overwrite of Refiner Switch Step (value between -1 and 200)
         -1,                 # int | Forced Overwrite of Generating Width (value between -1 and 200)
@@ -109,7 +112,7 @@ def set_parameters(client, positive_prompt='', negative_prompt='', seed=0, style
         0.0,                # float | Stop At (value between 0.0 and 1.0)
         0.0,                # float | Weight (value between 0.0 and 2.0)
         'ImagePrompt',      # str | Type
-        fn_index=41
+        fn_index=46
     )
 
     if result == ():
